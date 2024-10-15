@@ -11,7 +11,30 @@ interface HeaderOptions {
 
 export const headerSection = (options: HeaderOptions): Content => {
   const { title, subTitle, showLogo = true, showDate = true } = options
-  const logo: Content = showLogo ? { image: 'src/assets/tucan-code-logo.png', width: 100, height: 100 } : null
-  const date: Content = showDate ? { text: DateFormatter.getDDMMMMYYY(new Date()), style: 'date' } : null
-  return { columns: [logo, date] }
+  const headerLogo: Content = showLogo ? { image: 'src/assets/tucan-code-logo.png', width: 100, height: 100 } : null
+  const headerDate: Content = showDate
+    ? { text: DateFormatter.getDDMMMMYYY(new Date()), style: 'date', width: 150, margin: [0, 20, 0, 0] }
+    : null
+  const headerSubtitle: Content = subTitle
+    ? {
+        text: subTitle,
+        alignment: 'center',
+        margin: [0, 2, 0, 0],
+        style: { bold: true, fontSize: 16 }
+      }
+    : null
+  const headerTitle: Content = title
+    ? {
+        stack: [
+          {
+            text: title,
+            alignment: 'center',
+            margin: [0, 20, 0, 0],
+            style: { bold: true, fontSize: 22 }
+          },
+          headerSubtitle
+        ]
+      }
+    : null
+  return { columns: [headerLogo, headerTitle, headerDate] }
 }
