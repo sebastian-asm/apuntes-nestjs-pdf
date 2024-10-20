@@ -25,6 +25,10 @@ const tableLayouts: Record<string, CustomTableLayout> = {
       if (i === 0) return '#7b90be'
       return i % 2 === 0 ? '#f3f3f3' : null
     }
+  },
+  borderBlue: {
+    hLineColor: () => '#5f96d4',
+    vLineColor: () => '#5f96d4'
   }
 }
 
